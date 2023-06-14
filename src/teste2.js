@@ -17,9 +17,12 @@ const createUser = (req, res, _next) => {
             return res.status(409).json({ message: "Usuário já cadastrado" })
         }
 
-        // No id, cria lógica para que na criação do usuário, o id não se repita.
+        // No id, cria lógica para que na criação do usuário, o id não se repita
+        const maxId = data.length > 0 ? Math.max(...data.map(user => user.id)) : 0;
+        const newId = maxId + 1;
+
         const newUser = {
-            id: Math.max(...data.map(user => user.id)) + 1,
+            id: newId,
             name,
             job
         }

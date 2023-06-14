@@ -21,7 +21,7 @@ const countAcess = (req, res, _next) => {
 
         const counterReqs = getReqsUser(id);
 
-        return res.status(200).json({ message: `Usuário ${name} foi lido ${counterReqs} vezes.` })
+        return res.status(200).json({ message: `Usuário ${user.name} foi lido ${counterReqs} vezes.` })
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }

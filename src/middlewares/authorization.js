@@ -1,7 +1,7 @@
 const { verify, sign } = require("jsonwebtoken");
 
 
-const createToken = (req, res, _next) => {
+const createToken = (_req, res, _next) => {
     try {
         const secret = process.env.JWT_SECRET;
 
@@ -32,7 +32,7 @@ const validateJWT = async (req, res, next) => {
 
         /* Através o método verify, podemos validar e decodificar o nosso JWT. */
         verify(tokenWithoutBearer, process.env.JWT_SECRET, async (error) => {
-            return error ? res.status(500).send({ message: error.message }) : next();
+            return error ? res.status(401).send({ message: error.message }) : next();
         });
     } catch (err) {
         return res.status(401).json({ message: err.message });
